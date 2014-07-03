@@ -7,13 +7,22 @@ public class Main {
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		Hairdresser hairdresser = new Hairdresser();
 		
-		new Thread(hairdresser).start();
+		HairDressHall.setHairdresser(new Hairdresser());
 		
+		Thread t = new Thread(HairDressHall.getHairdresser());
+		t.setDaemon(true);
+		t.start();
 		
-		for 
-
+		for ( int i=0; i< 100; i++){
+			new Thread(new Customer("Customer "+i)).start();
+			try {
+				Thread.currentThread().sleep(100);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 	}
 
 }

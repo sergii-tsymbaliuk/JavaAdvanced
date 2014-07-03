@@ -9,15 +9,15 @@ public class HairDressHall {
 	private static BlockingQueue<Customer> clientqueue = new LinkedBlockingQueue<Customer>(DRESSHALL_QUEUE_CAPACITY);
 	private static Hairdresser hairdresser; 
 	
-	public static boolean isOccupied(){
+	synchronized public static boolean isOccupied(){
 		return !(customer==null);
 	}
 	
-	public static Customer getCustomer() {
+	synchronized public static Customer getCustomer() {
 		return customer;
 	}
 
-	public static void setCustomer(Customer customer) {
+	synchronized public static void setCustomer(Customer customer) {
 		HairDressHall.customer = customer;
 	}
 	
