@@ -9,11 +9,11 @@ public class HairDressHall {
 	private static BlockingQueue<Customer> clientqueue = new LinkedBlockingQueue<Customer>(DRESSHALL_QUEUE_CAPACITY);
 	private static Hairdresser hairdresser; 
 	
-	synchronized public static boolean isOccupied(){
+	public static boolean isOccupied(){
 		return !(customer==null);
 	}
 	
-	synchronized public static Customer getCustomer() {
+	public static Customer getCustomer() {
 		return customer;
 	}
 
@@ -21,9 +21,9 @@ public class HairDressHall {
 		HairDressHall.customer = customer;
 	}
 	
-	public static void doCutCustomer(){
-		getCustomer().doCut();
-		setCustomer(clientqueue.poll());
+	synchronized public static void doCutCustomer(){
+		customer.doCut();
+		customer = clientqueue.poll();
 	}
 
 	public static boolean isQueueFree (){

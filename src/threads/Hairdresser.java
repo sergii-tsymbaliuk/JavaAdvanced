@@ -11,15 +11,15 @@ public class Hairdresser implements Runnable {
 				HairDressHall.doCutCustomer();
 			} else { //Иначе спим
 				System.out.println("Hairdresser: Queue empty - sleeping");				
-				try {		
-					Thread.currentThread().sleep(1000);
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+				synchronized( this ){
+					try {
+						this.wait(1000);
+					} catch (InterruptedException e) {
+						
+						e.printStackTrace();
+					}
 				}
 			}
 		}
 	}
-
-
 }

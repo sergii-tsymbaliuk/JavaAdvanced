@@ -22,7 +22,13 @@ public class Customer implements Runnable {
 		this.isCut.set(isCut);
 	}
 	
-	synchronized public void doCut() {
+	public void doCut() {
+		System.out.println(getName() +": begin to haircut");
+		try {		
+			Thread.currentThread().sleep(100);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 		setCut(true);
 		System.out.println(getName() +": haircut completed");
 	}
@@ -33,8 +39,8 @@ public class Customer implements Runnable {
 				System.out.println(getName() +": HairDress Hall is empty - go to do hair cut");				
 				HairDressHall.setCustomer(this);
 				System.out.println(getName() +": Unsleep hairdresser");	
-				synchronized( HairDressHall.getCustomer() ){
-					HairDressHall.getHairdresser().notify();
+				synchronized( HairDressHall.getHairdresser() ){
+					HairDressHall.getHairdresser().notifyAll();
 				}
 			} else {
 				//если зал занят - пытаемся стать в очередь
@@ -51,7 +57,6 @@ public class Customer implements Runnable {
 					System.out.println(getName() +": not yet haircutted - sleeping");					
 					Thread.currentThread().sleep(100);
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
