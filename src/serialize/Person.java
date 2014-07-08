@@ -13,6 +13,7 @@ public class Person {
 
 	public Person() {
 		super();
+		name = "DefaultName";
 		System.out.println("Default Person constructor executed for "+this.getClass()+" toString="+this.toString());
 	}
 

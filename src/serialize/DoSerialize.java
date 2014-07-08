@@ -43,7 +43,7 @@ public class DoSerialize {
 		}
 		
 		//readobjects
-		
+		Student.tag = "Teacher";
 		
 		try {
 			is = new ObjectInputStream(new FileInputStream(f));
@@ -55,13 +55,14 @@ public class DoSerialize {
 		try {
 			std1 = (Student)is.readObject();
 			std2 = (Student)is.readObject();
+			is.close();
 		} catch (ClassNotFoundException | IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} 
 		
 		System.out.println(std1.toString());
-		System.out.println(std2.toString());		
+		System.out.println(std2.toString());
 		
 	}
 

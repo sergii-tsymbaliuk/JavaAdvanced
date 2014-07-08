@@ -13,17 +13,17 @@ public class Student extends Person implements Serializable {
 		System.out.println("Default Strudent constructor executed for "+this.getClass()+" toString="+this.toString());
 	}
 
+	public Student(String name, Number burthdate, String code) {
+		super(name, burthdate);
+		this.code = code;
+		System.out.println("Custom Strudent constructor executed for "+this.getClass()+" toString="+this.toString());
+	}
+	
 	@Override
 	public String toString() {
 		return "Student [code=" + code + ", toString()=" + super.toString()
 				+ ", getClass()=" + getClass() + ", hashCode()=" + hashCode()
 				+ ", tag=" + tag + ", code=" + code				
 				+ "]";
-	}
-
-	public Student(String name, Number burthdate, String code) {
-		super(name, burthdate);
-		this.code = code;
-		System.out.println("Custom Strudent constructor executed for "+this.getClass()+" toString="+this.toString());
 	}
 }
